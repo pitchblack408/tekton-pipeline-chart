@@ -1,0 +1,5 @@
+apiVersion: v2
+name: tekton-pipeline-chart
+description: A Helm chart for deploying a Tekton pipeline with a git-clone task
+version: 0.1.0
+appVersion: "1.0"

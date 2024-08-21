@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: {{ .Values.pipeline.name }}
+spec:
+  tasks:
+    - name: git-clone
+      taskRef:
+        name: {{ .Values.pipeline.gitCloneTask.name }}
+      params:
+        - name: url
+          value: {{ .Values.pipeline.gitCloneTask.repoUrl }}
+        - name: revision
+          value: {{ .Values.pipeline.gitCloneTask.revision }}
+      workspaces:
+        - name: source
+          workspace: {{ .Values.pipeline.sharedWorkspace }}
+  workspaces:
+  {{- range .Values.pipeline.workspaces }}
+    - name: {{ .name }}
+  {{- end }}

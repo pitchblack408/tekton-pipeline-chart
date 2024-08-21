@@ -1,0 +1,22 @@
+serviceAccount:
+  name: "pipeline"
+
+pipeline:
+  name: "my-pipeline"
+  gitCloneTask:
+    name: "git-clone-task"
+    repoUrl: "https://github.com/your-repo/your-project.git"
+    revision: "main"
+  pipelineRun:
+    name: "my-pipeline-run"
+  sharedWorkspace: shared-workspace
+  workspaces:
+    - name: shared-workspace
+
+pvc:
+  name: "my-pipeline-shared-pvc"
+  accessMode: "ReadWriteOnce"
+  size: "1Gi"
+#  storageClass: "" # Leave empty for default storage class
+  storageClass: "block"
+  volumeMode: "Filesystem"
