@@ -3,15 +3,22 @@ kind: Pipeline
 metadata:
   name: {{ .Values.pipeline.name }}
 spec:
+  params:
+    - default: {{ .Values.pipeline.gitCloneTask.repoUrl }}
+      name: url
+      type: string
+    - default: {{ .Values.pipeline.gitCloneTask.revision }}
+      name: revision
+      type: string
   tasks:
     - name: git-clone
       taskRef:
         name: {{ .Values.pipeline.gitCloneTask.name }}
       params:
         - name: url
-          value: {{ .Values.pipeline.gitCloneTask.repoUrl }}
+          value: $(params.url)
         - name: revision
-          value: {{ .Values.pipeline.gitCloneTask.revision }}
+          value: $(params.revision)
       workspaces:
         - name: source
           workspace: {{ .Values.pipeline.sharedWorkspace }}

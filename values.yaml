@@ -17,6 +17,6 @@ pvc:
   name: "my-pipeline-shared-pvc"
   accessMode: "ReadWriteOnce"
   size: "1Gi"
-#  storageClass: "" # Leave empty for default storage class
-  storageClass: "block"
-  volumeMode: "Filesystem"
+  storageClass: "" # Leave empty for default storage class
+#  storageClass: "block"
+#  volumeMode: "Filesystem"
